@@ -18,7 +18,7 @@ namespace Test.Library
         }
 
         [Test]
-        public void Decrypt_UpperCaseCode()
+        public void Decrypt_UpperCaseCode() //Si
         {
             string result = vLowerCase.Decrypt("JTIATUGCWCQHCK");
             Assert.AreEqual("PROGRAMACIONII",result);
@@ -32,7 +32,7 @@ namespace Test.Library
         }
 
         [Test]
-        public void Encrypt_UpperCaseCode()
+        public void Encrypt_UpperCaseCode() // Si
         {
             string result = vLowerCase.Encrypt("PROGRAMACIONII");
             Assert.AreEqual("JTIATUGCWCQHCK",result);
@@ -45,13 +45,13 @@ namespace Test.Library
             Assert.AreEqual("OYNFYZLHBHVMHP",result);
         }
         [Test]
-        public void Decrypt_LowerCaseCode()
+        public void Decrypt_LowerCaseCode() //Si
         {
             string result = vLowerCase.Decrypt("jtiatugcwcqhck");
             Assert.AreEqual("PROGRAMACIONII",result);
         }
         [Test]
-        public void Encrypt_LowerCaseCodey()
+        public void Encrypt_LowerCaseCodey() //Si
         {
             string result = vLowerCase.Encrypt("programacionii");
             Assert.AreEqual("JTIATUGCWCQHCK",result);

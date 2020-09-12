@@ -10,39 +10,40 @@ namespace Vigenere.Library
         private const string fullAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         public VigenereCode(string codeWord, int salt)
         {
-            this.codeWord = codeWord;
+            this.codeWord = codeWord.ToUpper();
+            this.salt = salt;
         }
-        public string Encrypt(string encryptedPrhase)
+        public string Encrypt(string dencryptedPrhase)
         {
-            StringBuilder decrypted = new StringBuilder();
-            for (int i = 0; i <= encryptedPrhase.Length; i++)
+            StringBuilder ecrypted = new StringBuilder();
+            for (int i = 0; i < dencryptedPrhase.Length; i++)
             {
                 //Se obtiene la letra a encriptar
-                string valueToEncrypt = encryptedPrhase[i].ToString().ToUpper();
+                string valueToEncrypt = dencryptedPrhase[i].ToString().ToUpper();
                 //se obtiene la letra utilizada para encriptar (clave)
-                string key = codeWord[i%codeWord.Length].ToString();
+                string key = this.codeWord[i%this.codeWord.Length].ToString();
                 //Se obtiene la posicion de la letra clave
                 int keyPosition = GetLetterNumber(key);
                 //Se encripta el valor aplicando el desplazamiento
-                string encrypted = Shift(keyPosition + salt, valueToEncrypt);
+                string encrypted = Shift(keyPosition + this.salt, valueToEncrypt);
                 //Se agrega el resultado a la cadena encriptada
-                decrypted.Append(valueToEncrypt);
+                ecrypted.Append(encrypted);
             }
-            return decrypted.ToString();
+            return ecrypted.ToString();
         }
         public string Decrypt(string encryptedPrhase)
         {
             StringBuilder decrypted = new StringBuilder();
-            for (int i = 0; i <= encryptedPrhase.Length; i++)
+            for (int i = 0; i < encryptedPrhase.Length; i++)
             {
                 //Se obtiene la letra a desencriptar
                 string valueToDecrypt = encryptedPrhase[i].ToString().ToUpper();
                 //se obtiene la letra utilizada para encriptar (clave)
-                string key = codeWord[i%codeWord.Length].ToString();
+                string key = this.codeWord[i%this.codeWord.Length].ToString();
                 //Se obtiene la posicion de la letra clave
                 int keyPosition = GetLetterNumber(key);
                 //Se desencripta el valor invirtiendo el desplazamiento
-                string decryptedValue = RevertShift(keyPosition + salt, valueToDecrypt);
+                string decryptedValue = RevertShift(keyPosition + this.salt, valueToDecrypt);
                 //Se agrega el resultado a la cadena desencriptada
                 decrypted.Append(decryptedValue);
             }
@@ -86,6 +87,7 @@ namespace Vigenere.Library
                 {
                     break;
                 }
+                result++;
             }
             return result;
         }
